@@ -9,7 +9,39 @@ body {
   display: flex;
   align-items: center; 
   justify-content: center;
-  height: 100vh;
-  overflow-x: hidden;
+  flex-direction: column;
   margin: 0;
+  overflow-x: hidden;
 }
+
+h1 {
+    margin: 10px; 
+}
+
+.box {
+    height: 200px;
+    width: 400px;
+    background-color: #0055AD;
+    margin: 0.8rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
+    transform: translateX(400%);
+    transition: transform 0.4s ease;
+}
+
+.box:nth-of-type(even) {
+    transform: translateX(-400%);
+} 
+
+.box.show {
+    transform: translateX(0)
+} 
+
+.box h2 {
+    font-size: 2rem;
+}
+
