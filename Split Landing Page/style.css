@@ -1,16 +1,137 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald&display=swap");
 
+:root {
+  --left-bg-color: rgba(14, 11, 20, 0.7);
+  --right-bg-color: rgba(2, 3, 3, 0.8);
+  --left-btn-hover-color: rgba(234, 174, 2, 1);
+  --right-btn-hover-color: rgb(187, 138, 3);
+  --hover-width: 75%;
+  --other-width: 25%;
+  --speed: 1000ms;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: "Oswald", sans-serif;
-  display: flex;
-  align-items: center; 
-  justify-content: center;
-  flex-direction: column;
+  height: 100vh;
   margin: 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
+h1 {
+  font-size: 4rem;
+  color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: #fff;
+  border: 0.2rem solid #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1rem;
+  width: 15rem;
+  padding: 1rem;
+}
+
+.split.left .btn:hover {
+  background-color: var(--left-btn-hover-color);
+  border-color: #000;
+}
+
+.split.right .btn:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: var(--left-btn-hover-color);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #333;
+}
+
+.split {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.split.left {
+  left: 0;
+  background: url("https://cdn.shopify.com/s/files/1/0149/4794/2500/products/ultimatehydration_bundle_a_600x.jpg?v=1611688041");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.split.left::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--left-bg-color);
+}
+
+.split.right, .split.left, .split.right::before, .split.left::before {
+    transition: all var(--speed) ease-in-out;
+}
+
+.split.right {
+  right: 0;
+  background: url("https://cdn.shopify.com/s/files/1/0149/4794/2500/products/Pattern_deluxe_styling_Y_600x.jpg?v=1592582851");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.split.right::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--right-bg-color);
+}
+
+.hover-left .left {
+  width: var(--hover-width);
+}
+
+.hover-left .right {
+  width: var(--other-width);
+}
+
+.hover-right .left {
+  width: var(--other-width);
+}
+
+.hover-right .right {
+  width: var(--hover-width);
+}
+
+@media (max-width: 800px) {
+    h1 {
+        font-size: 2rem;
+        top: 30%;
+    }
+
+    .btn {
+        padding: 1.2rem;
+        width: 12rem;
+    }
+}
