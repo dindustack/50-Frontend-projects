@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  align-items: center;
+  background-color: #2675cf;
+  display: flex;
+  flex-direction: column;
+  font-family: "Barlow", sans-serif;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
