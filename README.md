@@ -1,1 +1,1 @@
-A 50 days HTML, CSS and JS challenge from brad traversy and florin pop
+A 50 days HTML, CSS and JS challenge from brad traversy and florin pop.
