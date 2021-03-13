@@ -84,7 +84,7 @@ img {
     #f6f7f8 0%,
     #edeef1 10%,
     #f6f7f8 20%,
-    #f6f7f8 100%,
+    #f6f7f8 100%
   );
   background-size: 200% 100%;
   animation: bgPos 1s linear infinite;
@@ -102,6 +102,7 @@ img {
   0% {
     background-position: 50% 0;
   }
+
   100% {
     background-position: -150% 0;
   }
