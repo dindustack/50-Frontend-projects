@@ -21,9 +21,9 @@ function showToast(message = null, type = null) {
 
     notification.classList.add('toast');
 
-    notification.classList.add(type ? type : getRandomToastColor);
+    notification.classList.add(type ? type : getRandomToastColor());
 
-    notification.innerText = getRandomToast();
+    notification.innerText = message ? message : getRandomToast();
 
     toasts.appendChild(notification);
 
