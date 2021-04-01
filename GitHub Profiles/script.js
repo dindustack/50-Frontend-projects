@@ -21,17 +21,14 @@ async function getUser(username) {
   showLoadingSpinner();
   try {
     const { data } = await axios(APIURL + username);
-    console.log('data', data)
 
     createUserCard(data);
     getRepos(username);
     removeLoadingSpinner();
   } catch (error) {
-    if (error.response.status === 404) {
       removeLoadingSpinner();
 
       createErrorCard("No profile with this username");
-    }
   }
 }
 
@@ -78,19 +75,17 @@ function createErrorCard(message) {
 }
 
 function addReposToCard(repos) {
-    const reposEl = document.getElementById('repos')
+  const reposEl = document.getElementById("repos");
 
-    repos
-        .slice(0, 5)
-        .forEach(repo => {
-            const repoEl = document.createElement('a')
-            repoEl.classList.add('repo')
-            repoEl.href = repo.html_url
-            repoEl.target = '_blank'
-            repoEl.innerText = repo.name
+  repos.slice(0, 5).forEach((repo) => {
+    const repoEl = document.createElement("a");
+    repoEl.classList.add("repo");
+    repoEl.href = repo.html_url;
+    repoEl.target = "_blank";
+    repoEl.innerText = repo.name;
 
-            reposEl.appendChild(repoEl)
-        })
+    reposEl.appendChild(repoEl);
+  });
 }
 
 form.addEventListener("submit", (e) => {
