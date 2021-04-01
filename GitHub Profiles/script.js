@@ -21,13 +21,27 @@ async function getUser(username) {
   showLoadingSpinner();
   try {
     const { data } = await axios(APIURL + username);
+    console.log('data', data)
 
     createUserCard(data);
+    getRepos(username);
     removeLoadingSpinner();
   } catch (error) {
     if (error.response.status === 404) {
+      removeLoadingSpinner();
+
       createErrorCard("No profile with this username");
     }
+  }
+}
+
+async function getRepos(username) {
+  try {
+    const { data } = await axios(APIURL + username + "/repos?sort=created");
+
+    addReposToCard(data);
+  } catch (error) {
+    createErrorCard("Problem fetching repos");
   }
 }
 
@@ -47,11 +61,7 @@ function createUserCard(user) {
                    <li>${user.public_repos} <strong>Repositories</strong></li>
                </ul>
 
-               <div id="repos">
-                   <a href="" class="repo">Repos 1</a>
-                   <a href="" class="repo">Repos 2</a>
-                   <a href="" class="repo">Repos 3</a>
-               </div>
+               <div id="repos"></div>
            </div>
        </div>
        `;
@@ -64,7 +74,23 @@ function createErrorCard(message) {
         <h2>${message}</h2>
     </div>
     `;
-    profileCard.innerHTML = cardHTML
+  profileCard.innerHTML = cardHTML;
+}
+
+function addReposToCard(repos) {
+    const reposEl = document.getElementById('repos')
+
+    repos
+        .slice(0, 5)
+        .forEach(repo => {
+            const repoEl = document.createElement('a')
+            repoEl.classList.add('repo')
+            repoEl.href = repo.html_url
+            repoEl.target = '_blank'
+            repoEl.innerText = repo.name
+
+            reposEl.appendChild(repoEl)
+        })
 }
 
 form.addEventListener("submit", (e) => {
